@@ -1,0 +1,44 @@
+#### 一般工作流
+
+* git clone 克隆一个远程仓库到本地
+* git add -- <filename> 添加一个文件到暂存区
+* git add 添加所有文件到暂存区
+* git commit 提交暂存区的文件
+    * -a 相当于先 git add . 在 git commit 
+    * -m 添加注释
+    * --amend 合并提交到上一次commit
+* git checkout --<filename> 检出该文件的最近一次的commit（相当于撤销修改）
+* git checkout branch_name 检出branch_name分支
+* git branch 查看本地分支
+    * -a 查看所有分支
+    * --remote 查看远程分支
+    * -d 删除当前分支，没有被合并时无法删除
+    * -D 强制删除当前分支，没有被合并时也删除
+* git status 查看当前仓库状态
+* git pull 从服务器拉去最新代码
+* git push 推送本地commit到远程仓库
+* git push origin branch_name:refs/for/branch_name 提交本地commit到gerrit
+* gitk 查看commit树
+* git reset commit-id 回到commit-id的提交
+    * --mixed （默认选项） 文件不会被添加到暂存区
+    * --soft 文件会被添加到暂存区
+    * --hard 文件会被删除
+
+#### 高级应用
+* git reflog 查看本地执行过的所有操作
+* git cherry-pick commit-id 获取commit-id的内容提交到当前分支
+* git merge branch_name 将branch_name合并到当前分支
+* git rebase
+    * -i
+
+
+#### vim编辑器的操作
+* i    在光标位置进去编辑模式
+* esc  返回normal模式
+* :    进入命令模式
+* x    删除光标所在的一个字符（光标后面的字符）
+* dd   删除当前行
+* u    撤销上次操作
+* hjkl 移动光标分别是左 下 上 右
+* q   （命令模式）不保存退出
+* wq  （命令模式）保存退出

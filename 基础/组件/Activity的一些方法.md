@@ -1,0 +1,2 @@
+### onContentChanged
+* 在Activity布局变动的时候，即setContentView或addContentView方法执行完毕时调用
