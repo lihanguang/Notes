@@ -10,7 +10,7 @@ Espresso是一个Google官方提供的Android应用UI自动化测试框架。Goo
 
 * 修改APP的build.gradle
 
-```java
+```
 defaultConfig {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -67,5 +67,63 @@ public class ChooseLanguageActivityTest {
 onView(ViewMatcher)
   .perform(ViewAction)
   .check(ViewAssertion);
+```
+
+#### Sample
+
+```java
+/**
+ * Created by Lihanguang on 2018/8/13.
+ */
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public class ChooseLanguageActivityTest {
+
+    @Rule
+    public ActivityTestRule<ChooseLanguageActivity> mTasksActivityTestRule =
+            new ActivityTestRule<ChooseLanguageActivity>(ChooseLanguageActivity.class);
+
+    @Test
+    public void testOnCreate() {
+        onView(withId(R.id.rv_language)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+
+        onView(new RecyclerViewMatcher(R.id.rv_language).atPositionOnView(1, R.id.iv_choose)).check(matches(isDisplayed()));
+
+        onView(withId(R.id.tv_confirm)).check(matches(isEnabled()));
+    }
+
+    @Test
+    public void testClick() {
+        onView(withId(R.id.rv_language)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+
+        onView(new RecyclerViewMatcher(R.id.rv_language).atPositionOnView(1, R.id.iv_choose)).check(matches(isDisplayed()));
+
+        onView(withId(R.id.tv_confirm)).check(matches(isEnabled()));
+
+        onView(withId(R.id.rv_language)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+
+        onView(new RecyclerViewMatcher(R.id.rv_language).atPositionOnView(1, R.id.iv_choose)).check(matches(not(isDisplayed())));
+    }
+
+    @Test
+    public void testSkip() {
+        onView(withId(R.id.tv_skip)).perform(click());
+
+        onView(withId(R.id.tab_pager)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testOK() {
+        onView(withId(R.id.rv_language)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+
+        onView(new RecyclerViewMatcher(R.id.rv_language).atPositionOnView(1, R.id.iv_choose)).check(matches(isDisplayed()));
+
+        onView(withId(R.id.tv_confirm)).check(matches(isEnabled()));
+
+        onView(withId(R.id.tv_confirm)).perform(click());
+
+        onView(withId(R.id.tab_pager)).check(matches(isDisplayed()));
+    }
+}
 ```
 
