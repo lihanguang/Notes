@@ -1,4 +1,4 @@
-#### rebase
+#### 变基（rebase）
 
 ###### 普通的rebase
 
